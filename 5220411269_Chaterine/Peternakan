@@ -1,0 +1,98 @@
+# Class Induk
+class Peternakan:
+    def __init__(self, nama, lokasi, pemilik):
+        self.nama = nama
+        self.lokasi = lokasi
+        self.pemilik = pemilik
+
+    def display_info(self):
+        print("Peternakan:", self.nama)
+        print("Lokasi:", self.lokasi)
+        print("Pemilik:", self.pemilik)
+
+
+# Class Anak Pertama
+class Hewan:
+    def __init__(self, nama, umur):
+        self.nama = nama
+        self.umur = umur
+
+    def display_info(self):
+        print("Hewan:", self.nama)
+        print("Umur:", self.umur, "tahun")
+
+
+# Class Anak Sapi dari Hewan
+class Sapi(Hewan):
+    def __init__(self, nama, umur, berat, jenis):
+        super().__init__(nama, umur)
+        self.berat = berat
+        self.jenis = jenis
+
+    def display_info(self):
+        super().display_info()
+        print("Berat:", self.berat, "kg")
+        print("Jenis:", self.jenis)
+
+    def is_berat_lebih_dari(self, sapi_lain):
+        return self.berat > sapi_lain.berat
+
+
+# Class Anak Ayam dari Hewan
+class Ayam(Hewan):
+    def __init__(self, nama, umur, telur):
+        super().__init__(nama, umur)
+        self.telur = telur
+
+    def display_info(self):
+        super().display_info()
+        print("Telur:", self.telur, "butir")
+
+    def berikan_telur(self):
+        return self.telur > 0
+
+
+# Class Anak Kambing dari Hewan
+class Kambing(Hewan):
+    def __init__(self, nama, umur, bulu):
+        super().__init__(nama, umur)
+        self.bulu = bulu
+
+    def display_info(self):
+        super().display_info()
+        print("Bulu:", self.bulu, "cm")
+
+
+class Kandang:
+    def __init__(self, kapasitas, luas):
+        self.kapasitas = kapasitas
+        self.luas = luas
+
+    def display_info(self):
+        print("Kapasitas Kandang:", self.kapasitas, "hewan")
+        print("Luas Kandang:", self.luas, "m^2")
+
+
+# Contoh Penggunaan
+if __name__ == "__main__":
+    peternakan = Peternakan("Ternak Makmur", "Jawa Barat", "Budi")
+    peternakan.display_info()
+
+    kandang_sapi = Kandang(10, 50)
+    kandang_sapi.display_info()
+
+    sapi1 = Sapi("Sapi Jantan", 5, 500, "Brahman")
+    sapi2 = Sapi("Sapi Betina", 4, 450, "Limousin")
+
+    sapi1.display_info()
+    print("Sapi 1 lebih berat dari Sapi 2:", sapi1.is_berat_lebih_dari(sapi2))
+
+    ayam1 = Ayam("Ayam Petelur", 2, 10)
+    ayam2 = Ayam("Ayam Kampung", 3, 0)
+
+    ayam1.display_info()
+    print("Ayam 1 bisa berikan telur:", ayam1.berikan_telur())
+    print("Ayam 2 bisa berikan telur:", ayam2.berikan_telur())
+
+    kambing1 = Kambing("Kambing Peranakan", 3, 20)
+    kambing1.display_info()
